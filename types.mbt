@@ -13,7 +13,7 @@ pub fn[Op] Node::Node(op : Op, children~ : Array[Int32] = []) -> Node[Op] {
 ///|
 /// A topologically ordered expression DAG; the last node is its root.
 pub struct Expr[Op] {
-  nodes : Array[Node[Op]]
+  priv nodes : Array[Node[Op]]
 }
 
 ///|
@@ -53,7 +53,7 @@ pub fn[Op] Expr::node(self : Expr[Op], id : Int32) -> Node[Op] {
 }
 
 ///|
-struct Class {
+priv struct Class {
   members : Array[Int32]
   parents : Array[Int32]
 }
@@ -62,13 +62,13 @@ struct Class {
 /// E-graph with hash-consing, path compression, and deferred congruence repair.
 /// IDs are local to this graph. Call rebuild after mutations before querying.
 pub struct EGraph[Op] {
-  nodes : Array[Node[Op]]
-  leaders : Array[Int32]
-  classes : Array[Class]
-  memo : Map[Node[Op], Int32]
-  pending : Array[Int32]
-  mut clean : Bool
-  mut revision : Int32
+  priv nodes : Array[Node[Op]]
+  priv leaders : Array[Int32]
+  priv classes : Array[Class]
+  priv memo : Map[Node[Op], Int32]
+  priv pending : Array[Int32]
+  priv mut clean : Bool
+  priv mut revision : Int32
 }
 
 ///|

@@ -46,7 +46,7 @@ test "e-matching joins alternatives and observes explicit limits" {
   let fa = g.add_expr(@egg.Expr::parse("(f a)"))
   let fb = g.add_expr(@egg.Expr::parse("(f b)"))
   ignore(g.union(fa, fb))
-  let pair = g.add(@egg.Node("pair", children=[fa, fb]))
+  let pair = g.add(Node("pair", children=[fa, fb]))
   ignore(g.rebuild())
   let pattern = @egg.Pattern::parse("(pair (f ?x) (f ?y))")
   let all = pattern.search(g, eclass=pair)
