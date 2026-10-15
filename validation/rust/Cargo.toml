@@ -1,0 +1,8 @@
+[package]
+name = "egg-reference-check"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+egg = { path = "../../.repos/egg" }

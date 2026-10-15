@@ -1,0 +1,11 @@
+{
+  "seed": 20261015,
+  "cases": 512,
+  "reference": "73975c9819efb4af2f3c6c1b44fa53f8c5742574",
+  "status": "passed",
+  "checks": [
+    "Rust and MoonBit extracted costs equal independent normalizer",
+    "extracted tree size matches reported cost",
+    "input/output semantics agree for three variable assignments"
+  ]
+}

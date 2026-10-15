@@ -1,0 +1,13 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "bobzhang/egg/validation/bridge"
+
+// Values
+pub fn simplify(String) -> String
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits
