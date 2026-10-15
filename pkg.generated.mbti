@@ -1,0 +1,56 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "bobzhang/egg"
+
+// Values
+
+// Errors
+
+// Types and methods
+type Class
+
+pub struct EGraph[Op] {
+  nodes : Array[Node[Op]]
+  leaders : Array[Int]
+  classes : Array[Class]
+  memo : Map[Node[Op], Int]
+  pending : Array[Int]
+  mut clean : Bool
+  mut revision : Int
+}
+pub fn[Op : Eq + Hash] EGraph::EGraph() -> Self[Op]
+pub fn[Op : Eq + Hash] EGraph::add(Self[Op], Node[Op]) -> Int
+pub fn[Op : Eq + Hash] EGraph::add_expr(Self[Op], Expr[Op]) -> Int
+pub fn[Op] EGraph::allocated_size(Self[Op]) -> Int
+pub fn[Op] EGraph::class_ids(Self[Op]) -> Array[Int]
+pub fn[Op : Eq + Hash] EGraph::class_nodes(Self[Op], Int) -> Array[Node[Op]]
+pub fn[Op] EGraph::find(Self[Op], Int) -> Int
+pub fn[Op] EGraph::is_clean(Self[Op]) -> Bool
+pub fn[Op : Eq + Hash] EGraph::lookup(Self[Op], Node[Op]) -> Int?
+pub fn[Op : Eq + Hash] EGraph::lookup_expr(Self[Op], Expr[Op]) -> Int?
+pub fn[Op] EGraph::number_of_classes(Self[Op]) -> Int
+pub fn[Op : Eq + Hash] EGraph::rebuild(Self[Op]) -> Int
+pub fn[Op] EGraph::total_size(Self[Op]) -> Int
+pub fn[Op] EGraph::union(Self[Op], Int, Int) -> Bool
+
+pub struct Expr[Op] {
+  nodes : Array[Node[Op]]
+}
+pub fn[Op] Expr::Expr() -> Self[Op]
+pub fn[Op] Expr::add(Self[Op], Node[Op]) -> Int
+pub fn[Op] Expr::length(Self[Op]) -> Int
+pub fn[Op] Expr::node(Self[Op], Int) -> Node[Op]
+pub fn[Op] Expr::root(Self[Op]) -> Int
+
+pub(all) struct Node[Op] {
+  op : Op
+  children : Array[Int]
+} derive(Eq, Hash)
+pub fn[Op] Node::Node(Op, children? : Array[Int]) -> Self[Op]
+pub fn[Op : Eq] Node::equal(Self[Op], Self[Op]) -> Bool
+pub fn[Op : Hash] Node::hash(Self[Op]) -> Int
+pub fn[Op : Hash] Node::hash_combine(Self[Op], Hasher) -> Unit
+pub fn[Op : Eq] Node::not_equal(Self[Op], Self[Op]) -> Bool
+
+// Type aliases
+
+// Traits
