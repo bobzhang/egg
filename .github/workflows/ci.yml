@@ -1,0 +1,51 @@
+name: CI
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        moonbit: ['0.10.15+943464bfa', latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - name: Install MoonBit
+        env:
+          MOONBIT_INSTALL_VERSION: ${{ matrix.moonbit }}
+        run: |
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+      - run: moon check --target all --warn-list +unnecessary_annotation --deny-warn
+      - run: moon fmt --check
+      - run: moon test --target all
+      - run: moon run cmd/demo
+      - name: Verify generated API
+        run: |
+          moon info
+          git diff --exit-code
+  differential:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/checkout@v5
+        with:
+          repository: egraphs-good/egg
+          ref: 73975c9819efb4af2f3c6c1b44fa53f8c5742574
+          path: .repos/egg
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - name: Install MoonBit
+        env:
+          MOONBIT_INSTALL_VERSION: 0.10.15+943464bfa
+        run: |
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+      - run: python3 validation/compare.py
+      - run: git diff --exit-code validation/results.json

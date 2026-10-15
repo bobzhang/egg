@@ -1,0 +1,5 @@
+import {
+  "bobzhang/egg",
+}
+
+pkgtype(kind: "executable")
