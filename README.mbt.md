@@ -25,6 +25,14 @@ test "simplify with equality saturation" {
 }
 ```
 
+## Installation
+
+```sh
+moon add bobzhang/egg@0.1.0
+```
+
+[GitHub](https://github.com/bobzhang/egg) · [Mooncakes](https://mooncakes.io/docs/bobzhang/egg)
+
 ## Core API
 
 - `EGraph()` creates a graph. `Node(op, children=[...])` adds an operator with
