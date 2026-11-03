@@ -47,13 +47,14 @@ pub fn[Op] Rewrite::name(self : Rewrite[Op]) -> String {
 }
 
 ///|
+#derive(Eq, Debug)
 pub(all) enum StopReason {
   Saturated
   IterationLimit
   NodeLimit
   MatchLimit
   Cancelled
-} derive(Eq, Debug)
+}
 
 ///|
 pub extend StopReason with Eq::{equal, not_equal}
