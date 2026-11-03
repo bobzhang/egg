@@ -1,9 +1,10 @@
 ///|
 /// An operator with ordered child IDs. Operators must be immutable map keys.
+#derive(Eq, Hash)
 pub(all) struct Node[Op] {
   op : Op
   children : Array[Int32]
-} derive(Eq, Hash)
+}
 
 ///|
 pub fn[Op] Node::Node(op : Op, children~ : Array[Int32] = []) -> Node[Op] {

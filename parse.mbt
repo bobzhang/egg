@@ -1,7 +1,8 @@
 ///|
+#derive(Debug)
 pub suberror ParseError {
   ParseError(String)
-} derive(Debug)
+}
 
 ///|
 priv enum Token {
